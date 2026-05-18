@@ -1,0 +1,23 @@
+appId: com.example.app
+name: "SC-05: Back arrow navigates to the previous screen"
+tags:
+  - SCRUM-10
+  - positive
+  - high
+---
+# Precondition: Launch app fresh and navigate to login screen from welcome screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen from the welcome/landing screen
+- tapOn: "Login"
+
+# Verify we are on the login screen
+- assertVisible: "Email"
+- assertVisible: "Password"
+
+# Tap the back arrow to navigate back
+- tapOn: "Back"
+
+# Verify user is navigated back to the previous screen (welcome/landing)
+- assertNotVisible: "Password"

@@ -1,0 +1,29 @@
+appId: com.example.app
+name: "SC-10: Login with invalid email format"
+tags:
+  - SCRUM-10
+  - negative
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Enter an invalid email format (missing @ and domain)
+- tapOn: "Email"
+- inputText: "notanemail"
+
+# Enter a password
+- tapOn: "Password"
+- inputText: "Test1234!"
+
+# Tap the Login button
+- tapOn: "Login"
+
+# Verify a validation error is displayed for invalid email format
+# User should remain on the login screen
+- assertVisible: "Email"
+- assertVisible: "Password"

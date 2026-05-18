@@ -1,0 +1,33 @@
+appId: com.example.app
+name: "SC-13: Login screen elements are accessible with screen reader"
+tags:
+  - SCRUM-10
+  - accessibility
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+# Note: Maestro has limited screen reader simulation; this test verifies
+# accessibility labels are present on key elements
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Verify the email field has an accessible label
+- assertVisible: "Email"
+
+# Verify the password field has an accessible label
+- assertVisible: "Password"
+
+# Verify the Login button is visible and identifiable
+- assertVisible: "Login"
+
+# Verify the Forgot Password link is visible and identifiable
+- scrollUntilVisible:
+    element: "Forgot Password"
+    direction: DOWN
+- assertVisible: "Forgot Password"
+
+# Verify the back navigation element is present
+- assertVisible: "Back"
