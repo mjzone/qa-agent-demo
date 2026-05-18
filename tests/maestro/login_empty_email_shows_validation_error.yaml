@@ -1,0 +1,27 @@
+appId: com.example.app
+name: "SC-07: Login with empty email field shows validation error"
+tags:
+  - SCRUM-10
+  - negative
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Leave the email field empty, only fill in the password
+- tapOn: "Password"
+- inputText: "SomePassword123"
+
+# Tap the Login button without entering an email
+- tapOn: "Login"
+
+# Verify a validation error is shown for the email field
+- assertVisible: "required"
+
+# Verify user remains on the login screen
+- assertVisible: "Email"
+- assertVisible: "Password"

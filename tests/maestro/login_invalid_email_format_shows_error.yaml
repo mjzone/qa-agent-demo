@@ -1,0 +1,31 @@
+appId: com.example.app
+name: "SC-10: Login with improperly formatted email shows validation error"
+tags:
+  - SCRUM-10
+  - negative
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Enter an improperly formatted email (missing @ sign)
+- tapOn: "Email"
+- inputText: "invalidemail-without-at-sign"
+
+# Enter a password
+- tapOn: "Password"
+- inputText: "SomePassword123"
+
+# Tap the Login button
+- tapOn: "Login"
+
+# Verify a validation error is shown indicating invalid email format
+- assertVisible: "invalid"
+
+# Verify user remains on the login screen
+- assertVisible: "Email"
+- assertVisible: "Password"

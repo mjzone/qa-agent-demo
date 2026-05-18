@@ -1,0 +1,28 @@
+appId: com.example.app
+name: "SC-11: Email field handles maximum length input"
+tags:
+  - SCRUM-10
+  - edge_case
+  - low
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Enter a very long email address (255+ characters) to test boundary handling
+- tapOn: "Email"
+- inputText: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com"
+
+# Enter a password
+- tapOn: "Password"
+- inputText: "SomePassword123"
+
+# Tap the Login button
+- tapOn: "Login"
+
+# Verify the app handles the long input gracefully — no crash occurs
+# The app should either truncate, show a validation error, or process without crashing
+- assertVisible: "Email"
