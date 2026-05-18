@@ -1,0 +1,28 @@
+appId: com.example.app
+name: "SC-12: Special characters in email and password fields"
+tags:
+  - SCRUM-10
+  - edge_case
+  - low
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Enter an email with special characters (valid email format with +, -, etc.)
+- tapOn: "Email"
+- inputText: "user+special@exam-ple.co.uk"
+
+# Enter a password with various special characters
+- tapOn: "Password"
+- inputText: "P@$$w0rd!#%^&*()"
+
+# Tap the Login button
+- tapOn: "Login"
+
+# Verify: The app accepts special characters without crashing or encoding issues
+# The login attempt processes normally (we remain on login screen or see appropriate response)
+- assertVisible: "Login"
