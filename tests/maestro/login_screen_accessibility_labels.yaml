@@ -1,0 +1,29 @@
+appId: com.example.app
+name: "SC-14: Login screen elements are accessible with screen reader"
+tags:
+  - SCRUM-10
+  - accessibility
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+# This test verifies that all interactive elements have meaningful accessibility labels
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Verify the email input field is present and accessible
+- assertVisible: "Email"
+
+# Verify the password input field is present and accessible
+- assertVisible: "Password"
+
+# Verify the Login button is present and accessible
+- assertVisible: "Login"
+
+# Verify the Forgot Password link is present and accessible
+- assertVisible: "Forgot Password"
+
+# Verify the back navigation element is present and accessible
+- assertVisible: "Back"
