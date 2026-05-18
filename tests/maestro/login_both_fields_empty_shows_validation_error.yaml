@@ -1,0 +1,23 @@
+appId: com.example.app
+name: "SC-09: Login with both fields empty shows validation error"
+tags:
+  - SCRUM-10
+  - negative
+  - medium
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Do not enter any text in either field, tap Login directly
+- tapOn: "Login"
+
+# Verify validation error(s) are shown for required fields
+- assertVisible: "required"
+
+# Verify user remains on the login screen
+- assertVisible: "Email"
+- assertVisible: "Password"
