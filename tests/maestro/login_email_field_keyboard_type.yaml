@@ -1,0 +1,23 @@
+appId: com.example.app
+name: "SC-02: Email field uses email keyboard and does not auto-capitalize"
+tags:
+  - SCRUM-10
+  - positive
+  - high
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Tap the email input field to bring up the keyboard
+- tapOn: "Email"
+
+# Type a lowercase string to verify no auto-capitalization occurs
+- inputText: "testlowercase"
+
+# Verify the text remains lowercase (no auto-capitalization applied)
+# The email field should retain the exact lowercase input
+- assertVisible: "testlowercase"
