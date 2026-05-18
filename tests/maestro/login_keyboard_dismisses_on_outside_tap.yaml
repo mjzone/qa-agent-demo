@@ -1,0 +1,26 @@
+appId: com.example.app
+name: "SC-13: Keyboard dismisses when tapping outside input fields"
+tags:
+  - SCRUM-10
+  - edge_case
+  - low
+---
+# Precondition: Launch app fresh and navigate to login screen
+- launchApp:
+    clearState: true
+
+# Navigate to the login screen
+- tapOn: "Login"
+
+# Tap the email input field to bring up the keyboard
+- tapOn: "Email"
+
+# Tap on an area outside the input fields to dismiss the keyboard
+# Using the Login button area as a non-input tap target to dismiss keyboard
+- hideKeyboard
+
+# Verify the login screen elements remain visible and accessible after keyboard dismissal
+- assertVisible: "Email"
+- assertVisible: "Password"
+- assertVisible: "Login"
+- assertVisible: "Forgot Password"
